@@ -40,8 +40,8 @@ def read_all_prices(urls):
 
 
 def print_headers():
-    print("symbol\t   count\t    price\t\ttotal")
-    print("----------------------------------------------------------------")
+    print("symbol\t   count\t    price\t\t    total")
+    print("------------------------------------------------------------------------")
 
 
 def print_data(holdings, prices):
@@ -50,15 +50,15 @@ def print_data(holdings, prices):
         account = holdings[accountname]
         if "pair" in account.keys():
             account["val"] = prices[account["pair"]]
-        print("{}:\t{:8,.2f}\t{:13,.2f}\t{:13,.2f} [{:7,.4f}]".format(
+        print("{}:\t{:8,.2f}\t{:13,.2f} [{:7,.4f}]\t{:13,.2f} [{:7,.4f}]".format(
             accountname,
             float(account["count"]),
-            float(account["val"]),
+            float(account["val"]), float(account["val"]) / prices["BTC-USD"] ,
             float(account["count"]) * float(account["val"]),
             float(account["count"]) * float(account["val"]) / prices["BTC-USD"]))
         total = total + float(account["count"]) * float(account["val"])
-    print("----------------------------------------------------------------")
-    print("Total:\t\t\t\t{:21,.2f} [{:7,.4f}]".format(total, total / prices["BTC-USD"]))
+    print("------------------------------------------------------------------------")
+    print("Total:\t\t\t\t{:29,.2f} [{:7,.4f}]".format(total, total / prices["BTC-USD"]))
     print("API Allowance Left: {}".format(allowance))
 
 
