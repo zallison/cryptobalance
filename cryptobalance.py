@@ -26,14 +26,14 @@ def read_all_prices(urls):
     toolbar_width = len(urls)
     prices = {}
     if progress_bar:
-        sys.stdout.write("[%s]" % (" " * toolbar_width))
-        sys.stdout.flush()
-        sys.stdout.write("\b" * (toolbar_width+1))
+        sys.stderr.write("[%s]" % (" " * toolbar_width))
+        sys.stderr.flush()
+        sys.stderr.write("\b" * (toolbar_width+1))
     for k, url in urls.iteritems():
         prices[k] = get_price(url)
         if progress_bar:
-            sys.stdout.write("-")
-            sys.stdout.flush()
+            sys.stderr.write("-")
+            sys.stderr.flush()
     if progress_bar:
         sys.stdout.write("\n")
     return prices
