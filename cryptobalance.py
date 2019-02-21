@@ -29,7 +29,7 @@ def read_all_prices(urls):
         sys.stderr.write("[%s]" % (" " * toolbar_width))
         sys.stderr.flush()
         sys.stderr.write("\b" * (toolbar_width+1))
-    for k, url in urls.iteritems():
+    for k, url in urls.items():
         prices[k] = get_price(url)
         if progress_bar:
             sys.stderr.write("-")
@@ -46,7 +46,7 @@ def print_headers():
 
 def print_data(holdings, prices):
     total = 0
-    for accountname in sorted(holdings.iterkeys()):
+    for accountname in sorted(holdings.keys()):
         account = holdings[accountname]
         if "pair" in account.keys():
             account["val"] = prices[account["pair"]]
