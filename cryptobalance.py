@@ -33,7 +33,7 @@ def read_all_prices(urls):
     if PROGRESS_BAR:
         sys.stderr.write("[%s]" % (" " * toolbar_width))
         sys.stderr.flush()
-        sys.stderr.write("\b" * (toolbar_width+1))
+        sys.stderr.write("\b" * (toolbar_width + 1))
     for k, url in urls.items():
         prices[k] = get_price(url)
         if PROGRESS_BAR:
@@ -59,13 +59,16 @@ def print_data(holdings, prices):
         if "pair" in account.keys():
             account["val"] = prices[account["pair"]]
 
-        print(row_format.format(
-            accountname,
-            float(account["count"]),
-            float(account["val"]), float(account["val"]) / prices["BTC-USD"],
-            float(account["count"]) * float(account["val"]),
-            float(account["count"]) *
-            float(account["val"]) / prices["BTC-USD"]))
+        print(
+            row_format.format(
+                accountname,
+                float(account["count"]),
+                float(account["val"]),
+                float(account["val"]) / prices["BTC-USD"],
+                float(account["count"]) * float(account["val"]),
+                float(account["count"]) * float(account["val"]) / prices["BTC-USD"],
+            )
+        )
         total = total + float(account["count"]) * float(account["val"])
     print("-" * 71)
     total_format = "Total:\t\t\t\t{:29,.2f} [{:7,.4f}]"
